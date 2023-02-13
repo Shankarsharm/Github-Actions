@@ -4,6 +4,8 @@ jobs:
   trigger:
     runs-on: ubuntu-latest
     steps:
+      - name: getting payload
+        run: echo "${{ toJSON(github.event) }}"
       - name: triggering GA Repo
         run: |
           curl -X POST https://api.github.com/repos/Shankarsharm/GA_Actions/dispatches \
