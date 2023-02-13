@@ -1,0 +1,12 @@
+name: Trigger another job
+on: push
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: triggering GA Repo
+        run: |
+          curl -X POST https://api.github.com/repos/Shankarsharm/GA_Actions/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.ACTIONS_KEY }} \
+          --data '{"event_type": "Trigger_Workflow", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
